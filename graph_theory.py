@@ -9,3 +9,7 @@ def make_graph(edges):
         g[u].add(v)
         g[v].add(u)
     return g
+
+
+def degree_sequence(g):
+    return sorted((len(nbrs) for nbrs in g.values()), reverse=True)
