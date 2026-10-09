@@ -28,3 +28,21 @@ def is_graphical(seq):
                 return False
         seq.sort(reverse=True)
     return True
+
+
+def is_bipartite(g):
+    color = {}
+    for start in g:
+        if start in color:
+            continue
+        color[start] = 0
+        q = deque([start])
+        while q:
+            v = q.popleft()
+            for w in g[v]:
+                if w not in color:
+                    color[w] = 1 - color[v]
+                    q.append(w)
+                elif color[w] == color[v]:
+                    return False, None
+    return True, color
