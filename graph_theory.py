@@ -54,3 +54,16 @@ def greedy_coloring(g, order=None):
         used = {colors[w] for w in g[v] if w in colors}
         colors[v] = next(c for c in range(len(g) + 1) if c not in used)
     return colors
+
+
+def is_tree(g, n_vertices):
+    edges = sum(len(nb) for nb in g.values()) // 2
+    if edges != n_vertices - 1:
+        return False
+    seen, stack = set(), [next(iter(g))]
+    while stack:
+        v = stack.pop()
+        if v not in seen:
+            seen.add(v)
+            stack.extend(g[v] - seen)
+    return len(seen) == n_vertices
