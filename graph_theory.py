@@ -46,3 +46,11 @@ def is_bipartite(g):
                 elif color[w] == color[v]:
                     return False, None
     return True, color
+
+
+def greedy_coloring(g, order=None):
+    colors = {}
+    for v in order or sorted(g, key=lambda x: -len(g[x])):
+        used = {colors[w] for w in g[v] if w in colors}
+        colors[v] = next(c for c in range(len(g) + 1) if c not in used)
+    return colors
