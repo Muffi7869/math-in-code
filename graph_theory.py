@@ -91,3 +91,24 @@ def count_labeled_trees(n):
         if len(g) == n and is_tree(g, n):
             count += 1
     return count, n ** (n - 2)
+
+
+def euler_path(edges):
+    """hierholzer's algorithm; returns None if no euler path exists"""
+    g = defaultdict(list)
+    for u, v in edges:
+        g[u].append(v)
+        g[v].append(u)
+    odd = [v for v in g if len(g[v]) % 2]
+    if len(odd) not in (0, 2):
+        return None
+    stack, path = [odd[0] if odd else next(iter(g))], []
+    while stack:
+        v = stack[-1]
+        if g[v]:
+            w = g[v].pop()
+            g[w].remove(v)
+            stack.append(w)
+        else:
+            path.append(stack.pop())
+    return path[::-1]
