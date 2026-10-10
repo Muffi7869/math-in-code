@@ -112,3 +112,15 @@ def euler_path(edges):
         else:
             path.append(stack.pop())
     return path[::-1]
+
+
+if __name__ == "__main__":
+    petersen_outer = [(i, (i + 1) % 5) for i in range(5)]
+    petersen = petersen_outer + [(i, i + 5) for i in range(5)] + [(5 + i, 5 + (i + 2) % 5) for i in range(5)]
+    P = make_graph(petersen)
+    print("petersen degrees", degree_sequence(P), "bipartite?", is_bipartite(P)[0])
+    print("greedy colors used", len(set(greedy_coloring(P).values())))
+    print("graphical [3,3,3,3]?", is_graphical([3, 3, 3, 3]), " [4,1,1]?", is_graphical([4, 1, 1]))
+    print("prufer", prufer_code([(1, 4), (2, 4), (3, 4), (4, 5), (5, 6)]))
+    print("labeled trees n=5 (brute, cayley):", count_labeled_trees(5))
+    print("konigsberg-ish euler path:", euler_path([(0, 1), (1, 2), (2, 0), (0, 3), (3, 2)]))
