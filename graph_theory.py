@@ -67,3 +67,15 @@ def is_tree(g, n_vertices):
             seen.add(v)
             stack.extend(g[v] - seen)
     return len(seen) == n_vertices
+
+
+def prufer_code(tree_edges):
+    g = make_graph(tree_edges)
+    code = []
+    while len(g) > 2:
+        leaf = min(v for v in g if len(g[v]) == 1)
+        parent = next(iter(g[leaf]))
+        code.append(parent)
+        g[parent].discard(leaf)
+        del g[leaf]
+    return code
