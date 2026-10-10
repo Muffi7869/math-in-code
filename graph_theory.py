@@ -79,3 +79,15 @@ def prufer_code(tree_edges):
         g[parent].discard(leaf)
         del g[leaf]
     return code
+
+
+def count_labeled_trees(n):
+    """cayley's formula, checked by brute force for small n"""
+    vertices = range(n)
+    all_edges = list(combinations(vertices, 2))
+    count = 0
+    for subset in combinations(all_edges, n - 1):
+        g = make_graph(subset)
+        if len(g) == n and is_tree(g, n):
+            count += 1
+    return count, n ** (n - 2)
