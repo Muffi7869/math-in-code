@@ -38,3 +38,12 @@ def rref(A):
 
 def rank(A):
     return len(rref(A)[1])
+
+
+def inverse(A):
+    n = len(A)
+    aug = [row + [Fraction(int(i == j)) for j in range(n)] for i, row in enumerate(A)]
+    R, pivots = rref(aug)
+    if pivots[:n] != list(range(n)):
+        raise ValueError("matrix is singular")
+    return [row[n:] for row in R]
