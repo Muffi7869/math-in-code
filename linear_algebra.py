@@ -12,3 +12,25 @@ def matmul(A, B):
 
 def transpose(A):
     return [list(r) for r in zip(*A)]
+
+
+def rref(A):
+    """reduced row echelon form with exact fractions. returns (R, pivot columns)"""
+    R = [row[:] for row in A]
+    rows, cols = len(R), len(R[0])
+    pivots, r = [], 0
+    for c in range(cols):
+        pivot = next((i for i in range(r, rows) if R[i][c] != 0), None)
+        if pivot is None:
+            continue
+        R[r], R[pivot] = R[pivot], R[r]
+        R[r] = [x / R[r][c] for x in R[r]]
+        for i in range(rows):
+            if i != r and R[i][c] != 0:
+                f = R[i][c]
+                R[i] = [a - f * b for a, b in zip(R[i], R[r])]
+        pivots.append(c)
+        r += 1
+        if r == rows:
+            break
+    return R, pivots
