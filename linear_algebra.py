@@ -34,3 +34,7 @@ def rref(A):
         if r == rows:
             break
     return R, pivots
+
+
+def rank(A):
+    return len(rref(A)[1])
