@@ -53,3 +53,17 @@ def determinant(A):
     if len(A) == 1:
         return A[0][0]
     return sum((-1) ** j * A[0][j] * determinant([row[:j] + row[j + 1:] for row in A[1:]]) for j in range(len(A)))
+
+
+def null_space(A):
+    R, pivots = rref(A)
+    cols = len(A[0])
+    free = [c for c in range(cols) if c not in pivots]
+    basis = []
+    for f in free:
+        v = [Fraction(0)] * cols
+        v[f] = Fraction(1)
+        for i, p in enumerate(pivots):
+            v[p] = -R[i][f]
+        basis.append(v)
+    return basis
