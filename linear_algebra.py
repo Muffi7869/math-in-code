@@ -47,3 +47,9 @@ def inverse(A):
     if pivots[:n] != list(range(n)):
         raise ValueError("matrix is singular")
     return [row[n:] for row in R]
+
+
+def determinant(A):
+    if len(A) == 1:
+        return A[0][0]
+    return sum((-1) ** j * A[0][j] * determinant([row[:j] + row[j + 1:] for row in A[1:]]) for j in range(len(A)))
