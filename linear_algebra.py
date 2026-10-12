@@ -67,3 +67,15 @@ def null_space(A):
             v[p] = -R[i][f]
         basis.append(v)
     return basis
+
+
+def solve(A, b):
+    aug = [row + [bi] for row, bi in zip(A, b)]
+    R, pivots = rref(aug)
+    n = len(A[0])
+    if n in pivots:
+        return None
+    x = [Fraction(0)] * n
+    for i, p in enumerate(pivots):
+        x[p] = R[i][n]
+    return x
