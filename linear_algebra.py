@@ -91,3 +91,13 @@ def gram_schmidt(vectors):
         if any(x != 0 for x in w):
             basis.append(w)
     return basis
+
+
+def power_iteration(A, iters=200):
+    v = [1.0] * len(A)
+    lam = 0.0
+    for _ in range(iters):
+        w = [sum(float(A[i][j]) * v[j] for j in range(len(v))) for i in range(len(A))]
+        lam = max(w, key=abs)
+        v = [x / lam for x in w]
+    return lam, v
