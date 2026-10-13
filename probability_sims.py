@@ -14,3 +14,7 @@ def birthday_exact(k, days=365):
     for i in range(k):
         p_distinct *= (days - i) / days
     return 1 - p_distinct
+
+
+def birthday_trial(k):
+    return lambda rng: len({rng.randrange(365) for _ in range(k)}) < k
