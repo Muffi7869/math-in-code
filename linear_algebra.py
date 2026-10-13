@@ -79,3 +79,15 @@ def solve(A, b):
     for i, p in enumerate(pivots):
         x[p] = R[i][n]
     return x
+
+
+def gram_schmidt(vectors):
+    basis = []
+    for v in vectors:
+        w = v[:]
+        for u in basis:
+            coef = sum(a * b for a, b in zip(v, u)) / sum(a * a for a in u)
+            w = [a - coef * b for a, b in zip(w, u)]
+        if any(x != 0 for x in w):
+            basis.append(w)
+    return basis
