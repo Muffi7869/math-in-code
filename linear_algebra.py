@@ -105,3 +105,17 @@ def power_iteration(A, iters=200):
 
 def show(A):
     return "\n".join("  [" + ", ".join(f"{str(x):>6}" for x in row) + "]" for row in A)
+
+
+if __name__ == "__main__":
+    import numpy as np
+
+    A = mat([[2, 1, -1], [-3, -1, 2], [-2, 1, 2]])
+    print("solve Ax=b:", [str(x) for x in solve(A, mat([[8, -11, -3]])[0])])
+    print("det", determinant(A), "numpy", round(np.linalg.det(np.array(A, dtype=float)), 6))
+    print("inverse:\n" + show(inverse(A)))
+    B = mat([[1, 2, 3, 4], [2, 4, 6, 8], [1, 0, 1, 0]])
+    print("rank B", rank(B), "null space:", [[str(x) for x in v] for v in null_space(B)])
+    print("gram-schmidt:", [[str(x) for x in v] for v in gram_schmidt(mat([[1, 1, 0], [1, 0, 1], [0, 1, 1]]))])
+    lam, _ = power_iteration(mat([[2, 1], [1, 3]]))
+    print(f"dominant eigenvalue {lam:.6f} numpy {max(np.linalg.eigvals(np.array([[2, 1], [1, 3]]))):.6f}")
