@@ -101,3 +101,7 @@ def power_iteration(A, iters=200):
         lam = max(w, key=abs)
         v = [x / lam for x in w]
     return lam, v
+
+
+def show(A):
+    return "\n".join("  [" + ", ".join(f"{str(x):>6}" for x in row) + "]" for row in A)
