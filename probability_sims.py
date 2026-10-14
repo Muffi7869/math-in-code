@@ -36,3 +36,7 @@ def binomial_pmf(k, n, p):
 
 def poisson_pmf(k, lam):
     return math.exp(-lam) * lam ** k / math.factorial(k)
+
+
+def coupon_collector_expected(n):
+    return n * sum(1 / i for i in range(1, n + 1))
