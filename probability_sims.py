@@ -28,3 +28,7 @@ def monty_hall_trial(switch):
             pick = next(d for d in range(3) if d not in (pick, opened))
         return pick == car
     return trial
+
+
+def binomial_pmf(k, n, p):
+    return math.comb(n, k) * p ** k * (1 - p) ** (n - k)
