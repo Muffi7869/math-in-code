@@ -18,3 +18,13 @@ def birthday_exact(k, days=365):
 
 def birthday_trial(k):
     return lambda rng: len({rng.randrange(365) for _ in range(k)}) < k
+
+
+def monty_hall_trial(switch):
+    def trial(rng):
+        car, pick = rng.randrange(3), rng.randrange(3)
+        opened = next(d for d in range(3) if d not in (car, pick))
+        if switch:
+            pick = next(d for d in range(3) if d not in (pick, opened))
+        return pick == car
+    return trial
