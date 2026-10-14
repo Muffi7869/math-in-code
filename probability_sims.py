@@ -32,3 +32,7 @@ def monty_hall_trial(switch):
 
 def binomial_pmf(k, n, p):
     return math.comb(n, k) * p ** k * (1 - p) ** (n - k)
+
+
+def poisson_pmf(k, lam):
+    return math.exp(-lam) * lam ** k / math.factorial(k)
