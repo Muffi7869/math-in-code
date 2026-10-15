@@ -10,3 +10,7 @@ def check(claim, values):
 
 def sum_of_odds_is_square(n):
     return sum(2 * k - 1 for k in range(1, n + 1)) == n * n
+
+
+def sum_of_cubes(n):
+    return sum(k ** 3 for k in range(1, n + 1)) == (n * (n + 1) // 2) ** 2
