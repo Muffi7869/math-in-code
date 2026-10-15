@@ -62,3 +62,13 @@ def derangement_trial(n):
         rng.shuffle(perm)
         return all(perm[i] != i for i in range(n))
     return trial
+
+
+def clt_demo(n_dice=30, samples=20_000, seed=1):
+    """sum of 30 dice should be roughly normal with mean 105 and sd sqrt(30*35/12)"""
+    rng = random.Random(seed)
+    sums = [sum(rng.randint(1, 6) for _ in range(n_dice)) for _ in range(samples)]
+    mean = sum(sums) / samples
+    sd = math.sqrt(sum((s - mean) ** 2 for s in sums) / (samples - 1))
+    within_1sd = sum(abs(s - mean) <= sd for s in sums) / samples
+    return round(mean, 2), round(sd, 3), round(math.sqrt(n_dice * 35 / 12), 3), round(within_1sd, 3)
