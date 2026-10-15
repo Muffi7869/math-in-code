@@ -14,3 +14,7 @@ def sum_of_odds_is_square(n):
 
 def sum_of_cubes(n):
     return sum(k ** 3 for k in range(1, n + 1)) == (n * (n + 1) // 2) ** 2
+
+
+def divisible_by_6(n):
+    return (n ** 3 - n) % 6 == 0
