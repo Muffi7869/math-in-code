@@ -50,3 +50,7 @@ def coupon_trial(n):
             draws += 1
         return draws
     return trial
+
+
+def derangement_prob(n):
+    return sum((-1) ** k / math.factorial(k) for k in range(n + 1))
