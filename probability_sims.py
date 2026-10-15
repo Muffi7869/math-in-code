@@ -54,3 +54,11 @@ def coupon_trial(n):
 
 def derangement_prob(n):
     return sum((-1) ** k / math.factorial(k) for k in range(n + 1))
+
+
+def derangement_trial(n):
+    def trial(rng):
+        perm = list(range(n))
+        rng.shuffle(perm)
+        return all(perm[i] != i for i in range(n))
+    return trial
