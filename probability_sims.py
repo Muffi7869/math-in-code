@@ -40,3 +40,13 @@ def poisson_pmf(k, lam):
 
 def coupon_collector_expected(n):
     return n * sum(1 / i for i in range(1, n + 1))
+
+
+def coupon_trial(n):
+    def trial(rng):
+        seen, draws = set(), 0
+        while len(seen) < n:
+            seen.add(rng.randrange(n))
+            draws += 1
+        return draws
+    return trial
