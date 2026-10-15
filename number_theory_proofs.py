@@ -18,3 +18,10 @@ def sum_of_cubes(n):
 
 def divisible_by_6(n):
     return (n ** 3 - n) % 6 == 0
+
+
+def bezout(a, b):
+    if b == 0:
+        return a, 1, 0
+    g, x, y = bezout(b, a % b)
+    return g, y, x - (a // b) * y
