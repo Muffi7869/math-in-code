@@ -72,3 +72,15 @@ def clt_demo(n_dice=30, samples=20_000, seed=1):
     sd = math.sqrt(sum((s - mean) ** 2 for s in sums) / (samples - 1))
     within_1sd = sum(abs(s - mean) <= sd for s in sums) / samples
     return round(mean, 2), round(sd, 3), round(math.sqrt(n_dice * 35 / 12), 3), round(within_1sd, 3)
+
+
+if __name__ == "__main__":
+    print(f"birthday k=23: exact {birthday_exact(23):.4f} sim {simulate(birthday_trial(23), 50_000):.4f}")
+    print(f"monty hall: stay {simulate(monty_hall_trial(False)):.3f} switch {simulate(monty_hall_trial(True)):.3f}")
+    dice = random.Random(5)
+    rolls = Counter(dice.randint(1, 6) + dice.randint(1, 6) for _ in range(36_000))
+    print("P(sum of 2 dice = 7) sim", round(rolls[7] / 36_000, 4), "exact", round(6 / 36, 4))
+    print(f"binomial P(X=3), n=10 p=.3: {binomial_pmf(3, 10, 0.3):.4f} | poisson P(X=2), lam=3: {poisson_pmf(2, 3):.4f}")
+    print(f"coupon collector n=10: exact {coupon_collector_expected(10):.2f} sim {simulate(coupon_trial(10), 20_000):.2f}")
+    print(f"derangements n=8: exact {derangement_prob(8):.4f} sim {simulate(derangement_trial(8), 50_000):.4f} (1/e = {1 / math.e:.4f})")
+    print("CLT (mean, sd, theory sd, within 1sd):", clt_demo())
