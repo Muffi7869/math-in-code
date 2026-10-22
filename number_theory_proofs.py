@@ -25,3 +25,8 @@ def bezout(a, b):
         return a, 1, 0
     g, x, y = bezout(b, a % b)
     return g, y, x - (a // b) * y
+
+
+def sqrt2_irrational_witness(limit=2000):
+    """no p/q with q <= limit squares to exactly 2 (the proof says none ever will)"""
+    return all(p * p != 2 * q * q for q in range(1, limit + 1) for p in (int(q * 1.41421356), int(q * 1.41421356) + 1))
