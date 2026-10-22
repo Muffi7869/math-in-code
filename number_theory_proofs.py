@@ -34,3 +34,7 @@ def sqrt2_irrational_witness(limit=2000):
 
 def euler_phi(n):
     return sum(1 for k in range(1, n + 1) if gcd(k, n) == 1)
+
+
+def fermat_little(p, a):
+    return pow(a, p - 1, p) == 1
