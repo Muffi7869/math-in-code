@@ -30,3 +30,7 @@ def bezout(a, b):
 def sqrt2_irrational_witness(limit=2000):
     """no p/q with q <= limit squares to exactly 2 (the proof says none ever will)"""
     return all(p * p != 2 * q * q for q in range(1, limit + 1) for p in (int(q * 1.41421356), int(q * 1.41421356) + 1))
+
+
+def euler_phi(n):
+    return sum(1 for k in range(1, n + 1) if gcd(k, n) == 1)
