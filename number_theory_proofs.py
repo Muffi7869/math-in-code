@@ -51,3 +51,9 @@ def pigeonhole_subset_sum(nums):
             return nums[seen[total]:i]
         seen[total] = i
     return None
+
+
+def binomial_identities(n):
+    return (sum(comb(n, k) for k in range(n + 1)) == 2 ** n
+            and sum((-1) ** k * comb(n, k) for k in range(n + 1)) == 0
+            and sum(comb(n, k) ** 2 for k in range(n + 1)) == comb(2 * n, n))
