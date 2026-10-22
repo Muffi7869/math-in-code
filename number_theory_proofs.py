@@ -38,3 +38,16 @@ def euler_phi(n):
 
 def fermat_little(p, a):
     return pow(a, p - 1, p) == 1
+
+
+def pigeonhole_subset_sum(nums):
+    """any n integers have a nonempty subset whose sum is divisible by n. find one via prefix sums"""
+    n = len(nums)
+    seen = {0: 0}
+    total = 0
+    for i, x in enumerate(nums, 1):
+        total = (total + x) % n
+        if total in seen:
+            return nums[seen[total]:i]
+        seen[total] = i
+    return None
