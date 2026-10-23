@@ -57,3 +57,8 @@ def binomial_identities(n):
     return (sum(comb(n, k) for k in range(n + 1)) == 2 ** n
             and sum((-1) ** k * comb(n, k) for k in range(n + 1)) == 0
             and sum(comb(n, k) ** 2 for k in range(n + 1)) == comb(2 * n, n))
+
+
+def strong_induction_postage(n):
+    """every amount >= 12 can be made with 4c and 5c stamps"""
+    return any((n - 5 * b) >= 0 and (n - 5 * b) % 4 == 0 for b in range(n // 5 + 1))
