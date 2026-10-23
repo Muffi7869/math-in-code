@@ -62,3 +62,11 @@ def binomial_identities(n):
 def strong_induction_postage(n):
     """every amount >= 12 can be made with 4c and 5c stamps"""
     return any((n - 5 * b) >= 0 and (n - 5 * b) % 4 == 0 for b in range(n // 5 + 1))
+
+
+def collatz_steps(n):
+    steps = 0
+    while n != 1:
+        n = n // 2 if n % 2 == 0 else 3 * n + 1
+        steps += 1
+    return steps
