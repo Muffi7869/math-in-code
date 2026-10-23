@@ -70,3 +70,10 @@ def collatz_steps(n):
         n = n // 2 if n % 2 == 0 else 3 * n + 1
         steps += 1
     return steps
+
+
+def is_equivalence_relation(elements, rel):
+    reflexive = all((a, a) in rel for a in elements)
+    symmetric = all((b, a) in rel for a, b in rel)
+    transitive = all((a, d) in rel for a, b in rel for c, d in rel if b == c)
+    return reflexive and symmetric and transitive
