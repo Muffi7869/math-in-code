@@ -77,3 +77,17 @@ def is_equivalence_relation(elements, rel):
     symmetric = all((b, a) in rel for a, b in rel)
     transitive = all((a, d) in rel for a, b in rel for c, d in rel if b == c)
     return reflexive and symmetric and transitive
+
+
+if __name__ == "__main__":
+    rng = range(1, 500)
+    for f in (sum_of_odds_is_square, sum_of_cubes, divisible_by_6, binomial_identities):
+        print(f"{f.__name__:<24} counterexample: {check(f, rng)}")
+    print("postage >= 12 counterexample:", check(strong_induction_postage, range(12, 1000)))
+    print("bezout(240, 46):", bezout(240, 46), "| sqrt2 has no small rational root:", sqrt2_irrational_witness())
+    print("phi(36) =", euler_phi(36), "| fermat holds for p=101, a=2..100:", all(fermat_little(101, a) for a in range(2, 101)))
+    print("pigeonhole subset of [3, 8, 5, 1, 9, 4]:", pigeonhole_subset_sum([3, 8, 5, 1, 9, 4]))
+    print("max collatz steps under 10k:", max(range(1, 10_000), key=collatz_steps))
+    mod3 = {(a, b) for a in range(6) for b in range(6) if (a - b) % 3 == 0}
+    print("congruence mod 3 is an equivalence relation:", is_equivalence_relation(range(6), mod3))
+    print("number of 2-subsets of a 10-set:", len(list(combinations(range(10), 2))), "=", comb(10, 2))
