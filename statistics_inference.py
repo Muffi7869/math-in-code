@@ -20,3 +20,7 @@ def biased_vs_unbiased_variance(n=5, reps=50_000, seed=0):
         biased += ss / n
         unbiased += ss / (n - 1)
     return round(biased / reps, 3), round(unbiased / reps, 3), 4.0
+
+
+def mle_exponential(xs):
+    return len(xs) / sum(xs)
