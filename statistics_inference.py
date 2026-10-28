@@ -30,3 +30,7 @@ def mle_normal(xs):
     n = len(xs)
     mu = sum(xs) / n
     return mu, math.sqrt(sum((x - mu) ** 2 for x in xs) / n)
+
+
+def log_likelihood_poisson(lam, xs):
+    return sum(x * math.log(lam) - lam - math.lgamma(x + 1) for x in xs)
