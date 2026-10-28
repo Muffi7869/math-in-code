@@ -34,3 +34,8 @@ def mle_normal(xs):
 
 def log_likelihood_poisson(lam, xs):
     return sum(x * math.log(lam) - lam - math.lgamma(x + 1) for x in xs)
+
+
+def mle_poisson_grid(xs, grid=None):
+    grid = grid or [i / 100 for i in range(1, 1001)]
+    return max(grid, key=lambda lam: log_likelihood_poisson(lam, xs))
