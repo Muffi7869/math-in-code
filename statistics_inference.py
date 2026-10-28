@@ -24,3 +24,9 @@ def biased_vs_unbiased_variance(n=5, reps=50_000, seed=0):
 
 def mle_exponential(xs):
     return len(xs) / sum(xs)
+
+
+def mle_normal(xs):
+    n = len(xs)
+    mu = sum(xs) / n
+    return mu, math.sqrt(sum((x - mu) ** 2 for x in xs) / n)
