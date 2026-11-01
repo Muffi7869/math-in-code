@@ -60,3 +60,13 @@ def ci_coverage(true_mu=10, sigma=3, n=15, reps=10_000, seed=2):
         lo, hi = mean_ci([rng.gauss(true_mu, sigma) for _ in range(n)])
         hits += lo <= true_mu <= hi
     return hits / reps
+
+
+def proportion_ci(successes, n, conf=0.95):
+    """wilson interval, better than the textbook wald interval for small n"""
+    z = st.NormalDist().inv_cdf(0.5 + conf / 2)
+    p = successes / n
+    denom = 1 + z ** 2 / n
+    center = (p + z ** 2 / (2 * n)) / denom
+    half = z * math.sqrt(p * (1 - p) / n + z ** 2 / (4 * n ** 2)) / denom
+    return center - half, center + half
