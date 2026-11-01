@@ -51,3 +51,12 @@ def mean_ci(xs, conf=0.95):
     m, v = sample_mean_var(xs)
     half = t_critical(len(xs) - 1, conf) * math.sqrt(v / len(xs))
     return m - half, m + half
+
+
+def ci_coverage(true_mu=10, sigma=3, n=15, reps=10_000, seed=2):
+    rng = random.Random(seed)
+    hits = 0
+    for _ in range(reps):
+        lo, hi = mean_ci([rng.gauss(true_mu, sigma) for _ in range(n)])
+        hits += lo <= true_mu <= hi
+    return hits / reps
