@@ -39,3 +39,9 @@ def log_likelihood_poisson(lam, xs):
 def mle_poisson_grid(xs, grid=None):
     grid = grid or [i / 100 for i in range(1, 1001)]
     return max(grid, key=lambda lam: log_likelihood_poisson(lam, xs))
+
+
+def t_critical(df, conf=0.95):
+    """bisection on the t cdf (via the regularized incomplete beta relationship is overkill; use normal approx for large df)"""
+    z = st.NormalDist().inv_cdf(0.5 + conf / 2)
+    return z + (z ** 3 + z) / (4 * df) + (5 * z ** 5 + 16 * z ** 3 + 3 * z) / (96 * df ** 2)
