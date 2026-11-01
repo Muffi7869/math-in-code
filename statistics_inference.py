@@ -45,3 +45,9 @@ def t_critical(df, conf=0.95):
     """bisection on the t cdf (via the regularized incomplete beta relationship is overkill; use normal approx for large df)"""
     z = st.NormalDist().inv_cdf(0.5 + conf / 2)
     return z + (z ** 3 + z) / (4 * df) + (5 * z ** 5 + 16 * z ** 3 + 3 * z) / (96 * df ** 2)
+
+
+def mean_ci(xs, conf=0.95):
+    m, v = sample_mean_var(xs)
+    half = t_critical(len(xs) - 1, conf) * math.sqrt(v / len(xs))
+    return m - half, m + half
