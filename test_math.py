@@ -7,3 +7,8 @@ import linear_algebra as la
 import number_theory_proofs as nt
 import probability_sims as ps
 import statistics_inference as si
+
+
+def test_havel_hakimi():
+    assert gt.is_graphical([3, 3, 3, 3])
+    assert not gt.is_graphical([4, 1, 1])
