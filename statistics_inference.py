@@ -82,3 +82,16 @@ def mse_of_estimators(reps=20_000, n=10, seed=4):
         e1 += (2 * sum(xs) / n - theta) ** 2
         e2 += ((n + 1) / n * max(xs) - theta) ** 2
     return round(e1 / reps, 4), round(e2 / reps, 4)
+
+
+if __name__ == "__main__":
+    rng = random.Random(9)
+    print("E[biased var], E[unbiased var], true:", biased_vs_unbiased_variance())
+    data_exp = [rng.expovariate(2.5) for _ in range(5000)]
+    print(f"exponential MLE rate {mle_exponential(data_exp):.3f} (true 2.5)")
+    data_norm = [rng.gauss(4, 1.5) for _ in range(5000)]
+    print("normal MLE (mu, sigma):", tuple(round(x, 3) for x in mle_normal(data_norm)))
+    print("poisson MLE by grid:", mle_poisson_grid([2, 3, 1, 4, 2, 5, 3, 2]), "sample mean", st.mean([2, 3, 1, 4, 2, 5, 3, 2]))
+    print(f"t* df=14: {t_critical(14):.3f} (table 2.145) | 95% CI coverage: {ci_coverage():.3f}")
+    print("wilson CI 3/20:", tuple(round(x, 3) for x in proportion_ci(3, 20)))
+    print("MSE 2*mean vs adjusted max:", mse_of_estimators())
