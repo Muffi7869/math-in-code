@@ -70,3 +70,15 @@ def proportion_ci(successes, n, conf=0.95):
     center = (p + z ** 2 / (2 * n)) / denom
     half = z * math.sqrt(p * (1 - p) / n + z ** 2 / (4 * n ** 2)) / denom
     return center - half, center + half
+
+
+def mse_of_estimators(reps=20_000, n=10, seed=4):
+    """uniform(0, theta): compare 2*mean vs (n+1)/n * max as estimators of theta"""
+    rng = random.Random(seed)
+    theta = 5.0
+    e1 = e2 = 0.0
+    for _ in range(reps):
+        xs = [rng.uniform(0, theta) for _ in range(n)]
+        e1 += (2 * sum(xs) / n - theta) ** 2
+        e2 += ((n + 1) / n * max(xs) - theta) ** 2
+    return round(e1 / reps, 4), round(e2 / reps, 4)
