@@ -34,3 +34,8 @@ def test_cayley_small():
 
 def test_prufer_length():
     assert len(gt.prufer_code([(1, 2), (2, 3), (3, 4), (4, 5)])) == 3
+
+
+def test_euler_path_uses_every_edge():
+    edges = [(0, 1), (1, 2), (2, 0), (0, 3), (3, 2)]
+    assert len(gt.euler_path(edges)) == len(edges) + 1
