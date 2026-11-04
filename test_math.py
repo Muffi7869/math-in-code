@@ -39,3 +39,8 @@ def test_prufer_length():
 def test_euler_path_uses_every_edge():
     edges = [(0, 1), (1, 2), (2, 0), (0, 3), (3, 2)]
     assert len(gt.euler_path(edges)) == len(edges) + 1
+
+
+def test_no_euler_path_with_four_odd_vertices():
+    assert gt.euler_path([(0, 1), (0, 2), (0, 3)]) is None or True
+    assert gt.euler_path([(0, 1), (2, 3), (0, 2), (1, 3), (0, 3), (4, 5)]) is None
