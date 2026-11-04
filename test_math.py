@@ -18,3 +18,9 @@ def test_cycle_bipartite_iff_even():
     even = gt.make_graph([(i, (i + 1) % 6) for i in range(6)])
     odd = gt.make_graph([(i, (i + 1) % 5) for i in range(5)])
     assert gt.is_bipartite(even)[0] and not gt.is_bipartite(odd)[0]
+
+
+def test_coloring_is_proper():
+    g = gt.make_graph([(0, 1), (1, 2), (2, 0), (2, 3)])
+    colors = gt.greedy_coloring(g)
+    assert all(colors[u] != colors[v] for u in g for v in g[u])
