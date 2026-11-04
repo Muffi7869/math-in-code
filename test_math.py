@@ -12,3 +12,9 @@ import statistics_inference as si
 def test_havel_hakimi():
     assert gt.is_graphical([3, 3, 3, 3])
     assert not gt.is_graphical([4, 1, 1])
+
+
+def test_cycle_bipartite_iff_even():
+    even = gt.make_graph([(i, (i + 1) % 6) for i in range(6)])
+    odd = gt.make_graph([(i, (i + 1) % 5) for i in range(5)])
+    assert gt.is_bipartite(even)[0] and not gt.is_bipartite(odd)[0]
