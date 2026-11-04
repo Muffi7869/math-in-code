@@ -30,3 +30,7 @@ def test_cayley_small():
     for n in (3, 4):
         brute, formula = gt.count_labeled_trees(n)
         assert brute == formula
+
+
+def test_prufer_length():
+    assert len(gt.prufer_code([(1, 2), (2, 3), (3, 4), (4, 5)])) == 3
