@@ -24,3 +24,9 @@ def test_coloring_is_proper():
     g = gt.make_graph([(0, 1), (1, 2), (2, 0), (2, 3)])
     colors = gt.greedy_coloring(g)
     assert all(colors[u] != colors[v] for u in g for v in g[u])
+
+
+def test_cayley_small():
+    for n in (3, 4):
+        brute, formula = gt.count_labeled_trees(n)
+        assert brute == formula
