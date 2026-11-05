@@ -77,3 +77,7 @@ def test_singular_matrix_raises():
     except ValueError:
         return
     raise AssertionError("expected ValueError")
+
+
+def test_birthday_crosses_half_at_23():
+    assert ps.birthday_exact(22) < 0.5 < ps.birthday_exact(23)
