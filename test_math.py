@@ -64,3 +64,8 @@ def test_null_space_vectors_are_killed():
 
 def test_determinant_of_triangular():
     assert la.determinant(la.mat([[2, 5, 1], [0, 3, 7], [0, 0, 4]])) == 24
+
+
+def test_gram_schmidt_orthogonal():
+    basis = la.gram_schmidt(la.mat([[1, 1, 0], [1, 0, 1], [0, 1, 1]]))
+    assert all(sum(a * b for a, b in zip(u, v)) == 0 for i, u in enumerate(basis) for v in basis[i + 1:])
