@@ -54,3 +54,9 @@ def test_inverse_times_matrix_is_identity():
 def test_rank_nullity():
     B = la.mat([[1, 2, 3, 4], [2, 4, 6, 8], [1, 0, 1, 0]])
     assert la.rank(B) + len(la.null_space(B)) == 4
+
+
+def test_null_space_vectors_are_killed():
+    B = la.mat([[1, 2, 3], [2, 4, 6]])
+    for v in la.null_space(B):
+        assert all(sum(a * b for a, b in zip(row, v)) == 0 for row in B)
