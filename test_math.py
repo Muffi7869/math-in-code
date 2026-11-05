@@ -60,3 +60,7 @@ def test_null_space_vectors_are_killed():
     B = la.mat([[1, 2, 3], [2, 4, 6]])
     for v in la.null_space(B):
         assert all(sum(a * b for a, b in zip(row, v)) == 0 for row in B)
+
+
+def test_determinant_of_triangular():
+    assert la.determinant(la.mat([[2, 5, 1], [0, 3, 7], [0, 0, 4]])) == 24
