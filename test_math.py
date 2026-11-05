@@ -69,3 +69,11 @@ def test_determinant_of_triangular():
 def test_gram_schmidt_orthogonal():
     basis = la.gram_schmidt(la.mat([[1, 1, 0], [1, 0, 1], [0, 1, 1]]))
     assert all(sum(a * b for a, b in zip(u, v)) == 0 for i, u in enumerate(basis) for v in basis[i + 1:])
+
+
+def test_singular_matrix_raises():
+    try:
+        la.inverse(la.mat([[1, 2], [2, 4]]))
+    except ValueError:
+        return
+    raise AssertionError("expected ValueError")
