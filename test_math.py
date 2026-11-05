@@ -44,3 +44,8 @@ def test_euler_path_uses_every_edge():
 def test_no_euler_path_with_four_odd_vertices():
     assert gt.euler_path([(0, 1), (0, 2), (0, 3)]) is None or True
     assert gt.euler_path([(0, 1), (2, 3), (0, 2), (1, 3), (0, 3), (4, 5)]) is None
+
+
+def test_inverse_times_matrix_is_identity():
+    A = la.mat([[2, 1], [5, 3]])
+    assert la.matmul(A, la.inverse(A)) == la.mat([[1, 0], [0, 1]])
