@@ -49,3 +49,8 @@ def test_no_euler_path_with_four_odd_vertices():
 def test_inverse_times_matrix_is_identity():
     A = la.mat([[2, 1], [5, 3]])
     assert la.matmul(A, la.inverse(A)) == la.mat([[1, 0], [0, 1]])
+
+
+def test_rank_nullity():
+    B = la.mat([[1, 2, 3, 4], [2, 4, 6, 8], [1, 0, 1, 0]])
+    assert la.rank(B) + len(la.null_space(B)) == 4
