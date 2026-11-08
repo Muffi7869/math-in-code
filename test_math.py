@@ -89,3 +89,7 @@ def test_binomial_pmf_sums_to_one():
 
 def test_derangements_approach_one_over_e():
     assert abs(ps.derangement_prob(15) - 1 / math.e) < 1e-10
+
+
+def test_monty_hall_switching_wins_two_thirds():
+    assert abs(ps.simulate(ps.monty_hall_trial(True), 20_000) - 2 / 3) < 0.02
