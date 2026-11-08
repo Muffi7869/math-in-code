@@ -93,3 +93,8 @@ def test_derangements_approach_one_over_e():
 
 def test_monty_hall_switching_wins_two_thirds():
     assert abs(ps.simulate(ps.monty_hall_trial(True), 20_000) - 2 / 3) < 0.02
+
+
+def test_unbiased_variance_estimator():
+    biased, unbiased, true = si.biased_vs_unbiased_variance(reps=20_000)
+    assert abs(unbiased - true) < abs(biased - true)
