@@ -103,3 +103,8 @@ def test_unbiased_variance_estimator():
 def test_wilson_interval_contains_phat():
     lo, hi = si.proportion_ci(3, 20)
     assert lo < 3 / 20 < hi
+
+
+def test_t_critical_close_to_table():
+    assert abs(si.t_critical(14) - 2.145) < 0.01
+    assert abs(si.t_critical(1000) - 1.962) < 0.01
