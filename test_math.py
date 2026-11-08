@@ -98,3 +98,8 @@ def test_monty_hall_switching_wins_two_thirds():
 def test_unbiased_variance_estimator():
     biased, unbiased, true = si.biased_vs_unbiased_variance(reps=20_000)
     assert abs(unbiased - true) < abs(biased - true)
+
+
+def test_wilson_interval_contains_phat():
+    lo, hi = si.proportion_ci(3, 20)
+    assert lo < 3 / 20 < hi
