@@ -85,3 +85,7 @@ def test_birthday_crosses_half_at_23():
 
 def test_binomial_pmf_sums_to_one():
     assert math.isclose(sum(ps.binomial_pmf(k, 12, 0.37) for k in range(13)), 1.0)
+
+
+def test_derangements_approach_one_over_e():
+    assert abs(ps.derangement_prob(15) - 1 / math.e) < 1e-10
