@@ -113,3 +113,7 @@ def test_t_critical_close_to_table():
 def test_bezout_identity():
     g, x, y = nt.bezout(240, 46)
     assert g == 2 and 240 * x + 46 * y == g
+
+
+def test_phi_of_prime():
+    assert nt.euler_phi(97) == 96
