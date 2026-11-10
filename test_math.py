@@ -108,3 +108,8 @@ def test_wilson_interval_contains_phat():
 def test_t_critical_close_to_table():
     assert abs(si.t_critical(14) - 2.145) < 0.01
     assert abs(si.t_critical(1000) - 1.962) < 0.01
+
+
+def test_bezout_identity():
+    g, x, y = nt.bezout(240, 46)
+    assert g == 2 and 240 * x + 46 * y == g
