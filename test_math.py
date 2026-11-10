@@ -117,3 +117,8 @@ def test_bezout_identity():
 
 def test_phi_of_prime():
     assert nt.euler_phi(97) == 96
+
+
+def test_pigeonhole_subset_sum_divisible():
+    nums = [3, 8, 5, 1, 9, 4]
+    assert sum(nt.pigeonhole_subset_sum(nums)) % len(nums) == 0
