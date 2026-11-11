@@ -131,3 +131,10 @@ def test_equivalence_relation_detects_non_symmetric():
 def test_fraction_rref_is_exact():
     R, _ = la.rref(la.mat([[3, 1], [1, 2]]))
     assert R == [[Fraction(1), Fraction(0)], [Fraction(0), Fraction(1)]]
+
+
+if __name__ == "__main__":
+    tests = [v for k, v in dict(globals()).items() if k.startswith("test_")]
+    for t in tests:
+        t()
+    print(f"{len(tests)} tests passed")
