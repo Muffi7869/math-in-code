@@ -122,3 +122,7 @@ def test_phi_of_prime():
 def test_pigeonhole_subset_sum_divisible():
     nums = [3, 8, 5, 1, 9, 4]
     assert sum(nt.pigeonhole_subset_sum(nums)) % len(nums) == 0
+
+
+def test_equivalence_relation_detects_non_symmetric():
+    assert not nt.is_equivalence_relation(range(3), {(0, 0), (1, 1), (2, 2), (0, 1)})
