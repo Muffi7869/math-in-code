@@ -126,3 +126,8 @@ def test_pigeonhole_subset_sum_divisible():
 
 def test_equivalence_relation_detects_non_symmetric():
     assert not nt.is_equivalence_relation(range(3), {(0, 0), (1, 1), (2, 2), (0, 1)})
+
+
+def test_fraction_rref_is_exact():
+    R, _ = la.rref(la.mat([[3, 1], [1, 2]]))
+    assert R == [[Fraction(1), Fraction(0)], [Fraction(0), Fraction(1)]]
